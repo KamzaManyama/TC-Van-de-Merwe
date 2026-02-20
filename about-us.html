@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | TC Van de Merwe Logistics – Midrand Glen, Gauteng</title>
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/about-us.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/logoipsum-248.svg" type="image/png">
+
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Learn about TC Van de Merwe Logistics, a South African transport company built on reliability, accountability, and disciplined operations. Based in Midrand Glen, Gauteng.">
+    <meta name="keywords" content="TC Van de Merwe Logistics, about us, Midrand Glen transport company, Gauteng freight solutions, reliable logistics South Africa, accountable transport, disciplined operations">
+    <meta name="author" content="TC Van de Merwe Logistics">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="About Us | TC Van de Merwe Logistics – Midrand Glen, Gauteng">
+    <meta property="og:description" content="Learn about TC Van de Merwe Logistics, a South African transport company built on reliability, accountability, and disciplined operations. Based in Midrand Glen, Gauteng.">
+    <meta property="og:image" content="https://images.pexels.com/photos/4481256/pexels-photo-4481256.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600">
+    <meta property="og:url" content="https://www.tcvdmlogistics.co.za/about-us.html">  
+
+</head>
+<body class="antialiased">
+
+    <!-- Floating shapes -->
+    <div class="floating-shape shape-1" id="floatingShape1"></div>
+    <div class="floating-shape shape-2" id="floatingShape2"></div>
+    <div class="floating-shape shape-3" id="floatingShape3"></div>
+
+    <!-- Navbar (links point back to main index page) -->
+    <header class="fixed top-0 p-4 left-0 w-full z-50 navbar bg-transparent backdrop-blur-0" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 py-4 flex justify-between items-center content-above">
+            <div class="text-xl font-light tracking-tight text-white">
+               <a href="index.html">
+                   <img src="images/logoipsum-248.svg" alt="TC Van de Merwe logo" class="h-10 w-auto">
+               </a>
+            </div>
+            <nav class="space-x-8 text-sm font-light text-white/90 hidden md:block">
+                <a href="#foundation" class="hover:text-white transition">Our Foundation</a>
+                <a href="#story" class="hover:text-white transition">Our Story</a>
+                <a href="#values" class="hover:text-white transition">Values</a>
+                <a href="#approach" class="hover:text-white transition">Approach</a>
+                <a href="#vision" class="hover:text-white transition">Vision</a>
+                <a href="index.html#contact" class="hover:text-white transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+   <main class="pt-24 content-above"> <!-- pt-24 to account for fixed navbar -->
+
+        <!-- PAGE HERO (About Us) -->
+        <section class="relative h-[70vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-deep-black border-b border-stone-800">
+            <div class="absolute inset-0">
+                <img src="https://i.pinimg.com/1200x/d2/4e/b5/d24eb5ef56ec80e9f25bcaf974641975.jpg" alt="Logistics yard" class="w-full h-full object-cover opacity-40">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+            </div>
+            <div class="relative z-10 text-left px-6 md:px-10 max-w-7xl mx-auto w-full">
+                <span class="section-tag text-stone-300">ABOUT US</span>
+                <h1 class="text-5xl md:text-7xl font-light leading-tight text-white mb-4 max-w-3xl">Headquartered in Midrand Glen, Gauteng</h1>
+                <p class="text-xl text-stone-300 font-light max-w-2xl">Built on reliability, accountability, and disciplined operations since 2024.</p>
+            </div>
+        </section>
+
+        <!-- PART 1: Foundation (text + image) -->
+        <section id="foundation" class="bg-light-gray py-24 md:py-32">
+            <div class="max-w-7xl mx-auto px-6 md:px-10">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right" class="aos-init aos-animate">
+                        <span class="section-tag">OUR FOUNDATION</span>
+                        <h2 class="text-3xl md:text-4xl font-light mb-6 leading-tight text-stone-100">Built on reliability, accountability, and discipline</h2>
+                        <div class="story-text">
+                            <p>TC Van de Merwe Logistics is a South African private company (Pty) Ltd, VAT registered and built on a foundation of reliability, accountability, and disciplined operations. From our base in Midrand Glen, Gauteng, we serve businesses across provincial and national routes with transport solutions designed for consistency and long-term value.</p>
+                            <p>Our ethos marries operational precision with a deep respect for the goods and roads entrusted to us — crafting logistics that are not simply about moving cargo, but about strengthening the commercial partnerships that depend on timely delivery.</p>
+                            <p>After all, true logistics is more than transport; it is the quiet confidence of delivery, every time.</p>
+                        </div>
+                    </div>
+                    <div data-aos="fade-left" data-aos-delay="200" class="aos-init aos-animate">
+                        <div class="zoom-container rounded-sm overflow-hidden">
+                            <img src="https://i.pinimg.com/1200x/bd/97/b0/bd97b06354111b31ef83de40804c55e0.jpg" alt="Logistics planning" class="zoom-image w-full h-auto object-cover" style="height: 500px; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 2: Our Story (origins) - full width image with overlay text -->
+        <section id="story" class="relative h-[70vh] min-h-[500px] overflow-hidden">
+            <img src="https://i.pinimg.com/736x/13/01/70/130170f808ca85330639c5102060b955.jpg" alt="Open road" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center max-w-3xl px-6 aos-init" data-aos="zoom-in">
+                    <span class="section-tag text-stone-300">EST. 2024</span>
+                    <h2 class="text-4xl md:text-5xl font-light mb-4 text-white">A clear purpose</h2>
+                    <p class="text-stone-200 text-lg md:text-xl font-light max-w-2xl mx-auto">To provide dependable, professional transport services in an industry where reliability defines reputation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 3: What Defines Us (cards) -->
+        <section id="values" class="bg-mid-gray py-24 md:py-32">
+            <div class="max-w-7xl mx-auto px-6 md:px-10">
+                <div class="text-center mb-16 aos-init" data-aos="fade-up">
+                    <span class="section-tag">WHAT DEFINES US</span>
+                    <h2 class="text-3xl md:text-4xl font-light mb-4 text-stone-100">The principles that guide us</h2>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="card-hover p-6 rounded-sm aos-init" data-aos="flip-left" data-aos-delay="100">
+                        <h3 class="text-xl font-light mb-3 text-stone-200">Operational Discipline</h3>
+                        <p class="text-stone-400 text-sm">Every load is planned, monitored, and executed with structured processes designed to minimise risk and maximise efficiency.</p>
+                    </div>
+                    <div class="card-hover p-6 rounded-sm aos-init" data-aos="flip-left" data-aos-delay="200">
+                        <h3 class="text-xl font-light mb-3 text-stone-200">Accountability</h3>
+                        <p class="text-stone-400 text-sm">We take ownership of every shipment, understanding that behind each consignment is a business depending on us.</p>
+                    </div>
+                    <div class="card-hover p-6 rounded-sm aos-init" data-aos="flip-left" data-aos-delay="300">
+                        <h3 class="text-xl font-light mb-3 text-stone-200">Professional Fleet Management</h3>
+                        <p class="text-stone-400 text-sm">Our fleet is maintained to meet safety and compliance standards, ensuring roadworthiness and reliability.</p>
+                    </div>
+                    <div class="card-hover p-6 rounded-sm aos-init" data-aos="flip-left" data-aos-delay="400">
+                        <h3 class="text-xl font-light mb-3 text-stone-200">Long-Term Partnerships</h3>
+                        <p class="text-stone-400 text-sm">We believe logistics is relational. We aim to build ongoing partnerships rather than one-off transactions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 4: Our Approach (text + image reversed) -->
+        <section id="approach" class="bg-deep-black py-24 md:py-32">
+            <div class="max-w-7xl mx-auto px-6 md:px-10">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 md:order-1 aos-init" data-aos="fade-right">
+                        <div class="zoom-container rounded-sm overflow-hidden">
+                            <img src="https://i.pinimg.com/1200x/06/e3/34/06e33459e49a6ef4cf13becea2962e45.jpg" alt="Route planning" class="zoom-image w-full h-auto object-cover" style="height: 450px; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2 aos-init" data-aos="fade-left" data-aos-delay="200">
+                        <span class="section-tag">OUR APPROACH</span>
+                        <h2 class="text-3xl md:text-4xl font-light mb-6 leading-tight text-stone-100">Delivering with intention, not assumption</h2>
+                        <p class="text-stone-400 font-light leading-relaxed mb-6">We understand that transport is a critical link in the supply chain. That is why our approach prioritises:</p>
+                        <ul class="space-y-3 text-stone-400">
+                            <li class="flex items-start"><span class="text-stone-300 mr-3 text-lg">✓</span> Clear communication</li>
+                            <li class="flex items-start"><span class="text-stone-300 mr-3 text-lg">✓</span> Careful route planning</li>
+                            <li class="flex items-start"><span class="text-stone-300 mr-3 text-lg">✓</span> Ongoing fleet monitoring</li>
+                            <li class="flex items-start"><span class="text-stone-300 mr-3 text-lg">✓</span> Safety-first operations</li>
+                            <li class="flex items-start"><span class="text-stone-300 mr-3 text-lg">✓</span> Compliance with transport regulations</li>
+                        </ul>
+                        <p class="text-stone-400 font-light leading-relaxed mt-6">We deliver with intention, not assumption.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!-- PART 6: Vision & Mission (two columns) -->
+        <section id="vision" class="bg-light-gray py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 text-center">
+                    <div data-aos="fade-right" class="aos-init">
+                        <span class="section-tag mb-4">OUR VISION</span>
+                        <p class="text-xl md:text-2xl font-light text-stone-200 leading-relaxed">To become a trusted transport partner across South Africa, recognised for reliability, operational excellence, and integrity in logistics.</p>
+                    </div>
+                    <div data-aos="fade-left" data-aos-delay="200" class="aos-init">
+                        <span class="section-tag mb-4">OUR MISSION</span>
+                        <p class="text-xl md:text-2xl font-light text-stone-200 leading-relaxed">To deliver consistent, safe, and professional transport services that support the growth and stability of our clients' businesses.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 5: Commitment to the Road (full width image with quote) -->
+        <section class="relative h-[60vh] min-h-[450px] overflow-hidden">
+            <img src="https://i.pinimg.com/1200x/bc/50/33/bc50333585657f9bd6426e766d14c973.jpg" alt="Truck on road" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center max-w-2xl px-6 aos-init" data-aos="fade-up">
+                    <p class="text-2xl md:text-3xl font-light italic text-white leading-relaxed">"Every journey reflects our company's name and reputation — and we protect both."</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER (consistent with main site) -->
+    <footer class="bg-deep-black border-t border-stone-800 py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 md:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-stone-400 font-light">
+                <div>
+                   <img src="images/logoipsum-248.svg" alt="TC Van de Merwe Logistics Logo" class="h-10 mb-4">
+                    <p class="leading-relaxed">Reliable freight solutions across South Africa. Established 2024.</p>
+                </div>
+                <div>
+                    <span class="text-stone-300 text-sm block mb-4">QUICK LINKS</span>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#services" class="hover:text-stone-100 transition">Services</a></li>
+                        <li><a href="index.html#fleet" class="hover:text-stone-100 transition">Fleet</a></li>
+                        <li><a href="index.html#coverage" class="hover:text-stone-100 transition">Coverage</a></li>
+                        <li><a href="index.html#careers" class="hover:text-stone-100 transition">Careers</a></li>
+                        <li><a href="index.html#contact" class="hover:text-stone-100 transition">Contact</a></li>
+                    </ul>
+                </div>
+             
+                <div>
+                    <span class="text-stone-300 text-sm block mb-4">OPERATING HOURS</span>
+                    <ul class="space-y-2">
+                        <li>Mon-Fri: 07:00 – 18:00</li>
+                        <li>Sat: 08:00 – 14:00</li>
+                        <li>Sun: Closed</li>
+                        <li>24/7 Dispatch Support</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-stone-800 mt-8 pt-8 text-xs text-stone-500 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+                <span>© 2025 TC Van de Merwe Logistics (Pty) Ltd. VAT Reg. All rights reserved.</span>
+                <span class="mt-2 md:mt-0">Designed with integrity · Member of SAPSDA</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================== Custom scripts =================================================== -->
+
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="javascript/main.js"></script>
+
+    <!-- ============================================================================================================== -->
+
+</body>
+</html>

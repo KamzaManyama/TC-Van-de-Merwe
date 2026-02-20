@@ -1,0 +1,124 @@
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0c0a09;
+            color: #e7e5e4;
+            overflow-x: hidden;
+        }
+
+        /* Parallax / zoom utilities */
+        .zoom-out-element {
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+
+        /* Floating shapes – very subtle */
+        .floating-shape {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at 30% 30%, rgba(120, 113, 108, 0.03), transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+            pointer-events: none;
+            transition: transform 0.05s linear;
+            will-change: transform;
+        }
+        .shape-1 { top: 10%; left: 5%; }
+        .shape-2 { bottom: 20%; right: 10%; width: 400px; height: 400px; background: radial-gradient(circle at 70% 70%, rgba(168, 162, 158, 0.02), transparent 70%); }
+        .shape-3 { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(87, 83, 78, 0.01), transparent 80%); }
+
+        .content-above { position: relative; z-index: 10; }
+
+        /* Card hover style */
+        .card-hover {
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s;
+            background: rgba(28, 25, 23, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(120, 113, 108, 0.2);
+        }
+        .card-hover:hover {
+            transform: scale(1.02) translateY(-8px);
+            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.5);
+            border-color: rgba(168, 162, 158, 0.4);
+        }
+
+        /* Zoom image container */
+        .zoom-container {
+            overflow: hidden;
+        }
+        .zoom-image {
+            transition: transform 0.3s ease;
+        }
+        .zoom-container:hover .zoom-image {
+            transform: scale(1.05);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1c1917; }
+        ::-webkit-scrollbar-thumb { background: #57534e; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #78716c; }
+
+        /* Section tag style */
+        .section-tag {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: #a8a29e;
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        /* Navbar transition */
+        .navbar {
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+        }
+        .navbar.scrolled {
+            background-color: #0c0a09 !important;
+            backdrop-filter: none;
+            border-bottom: 1px solid #292524;
+        }
+
+        /* Section backgrounds */
+        .bg-light-gray {
+            background-color: #1e1b19;
+        }
+        .bg-mid-gray {
+            background-color: #2a2725;
+        }
+        .bg-deep-black {
+            background-color: #0c0a09;
+        }
+
+        /* Story text styling */
+        .story-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #d6d3d1;
+        }
+        .story-text h3 {
+            font-size: 1.75rem;
+            font-weight: 300;
+            margin: 2rem 0 1rem;
+            color: #e7e5e4;
+        }
+        .story-text ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #d6d3d1;
+        }
+        .story-text li {
+            margin-bottom: 0.5rem;
+        }
+        .story-text strong {
+            color: #e7e5e4;
+            font-weight: 400;
+        }

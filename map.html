@@ -1,0 +1,347 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coverage & Routes | TC Van de Merwe Logistics</title>
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Maps API -->
+   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="styles/maps.css">
+ 
+
+    <!-- Floating shapes -->
+    <div class="floating-shape shape-1" id="floatingShape1" style="transform: translate(75.8px, 37.9px) scale(1.758);"></div>
+    <div class="floating-shape shape-2" id="floatingShape2" style="transform: translate(-113.7px, -75.8px) scale(2.137);"></div>
+    <div class="floating-shape shape-3" id="floatingShape3" style="transform: translate(-50%, -50%) scale(1.5685);"></div>
+
+    <!-- Navbar -->
+     <header class="fixed top-0 p-4 left-0 w-full z-50 navbar scrolled" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 py-4 flex justify-between items-center content-above">
+            <div class="text-xl font-light tracking-tight text-white">
+               <a href="index.html">
+                   <img src="images/logoipsum-248.svg" alt="TC Van de Merwe logo" class="h-10 w-auto">
+               </a>
+            </div>
+            <nav class="space-x-8 text-sm font-light text-white/90 hidden md:block">
+                <a href="#network" class="hover:text-white transition">Network</a>
+                <a href="#live-map" class="hover:text-white transition">Live Map</a>
+                <a href="#regions" class="hover:text-white transition">Regions</a>
+                <a href="#operations" class="hover:text-white transition">Operations</a>
+                <a href="#cross-border" class="hover:text-white transition">Cross-Border</a>
+                <a href="index.html#contact" class="hover:text-white transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-24 content-above">
+
+        <!-- PAGE HERO - Dramatic full-width with overlay -->
+        <section class="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-deep-black">
+            <div class="absolute inset-0">
+                <img src="https://i.pinimg.com/1200x/49/fe/81/49fe81e70c26ff20a4a910c43f50fe0e.jpg" alt="Map and compass" class="w-full h-full object-cover zoom-out-element" id="heroZoomBg" style="transform: scale(1.858);">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+            </div>
+            <div class="relative z-10 text-left px-6 md:px-10 max-w-7xl mx-auto w-full">
+                <span class="section-tag text-stone-300 animate-pulse">OUR NETWORK</span>
+                <h1 class="text-5xl md:text-7xl font-light leading-tight text-white mb-4 max-w-4xl aos-init aos-animate" data-aos="fade-right" data-aos-duration="1500">Connecting South Africa's Key Provinces</h1>
+                <p class="text-xl md:text-2xl text-stone-300 font-light max-w-2xl aos-init aos-animate" data-aos="fade-right" data-aos-delay="200">From Gauteng to Limpopo, Mpumalanga to KwaZulu-Natal — structured transport routes designed for efficiency, reliability, and operational control.</p>
+            </div>
+            
+        </section>
+
+        <!-- NETWORK HIGHLIGHTS - Visual Cards replacing the text block -->
+        <section id="network" class="bg-light-gray py-20 md:py-28">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 aos-init aos-animate" data-aos="fade-up">
+                    <span class="section-tag">OUR NETWORK</span>
+                    <h2 class="text-3xl md:text-4xl font-light mb-4 text-stone-100">Engineered for Predictable Delivery</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="feature-card text-center aos-init aos-animate" data-aos="flip-left" data-aos-delay="100">
+                        
+                        <h3 class="text-xl font-light mb-3 text-stone-200">Industrial Hubs</h3>
+                        <p class="text-stone-400 text-sm">Connecting manufacturing zones across Gauteng, Mpumalanga, and KZN with dedicated freight corridors.</p>
+                    </div>
+                    <div class="feature-card text-center aos-init aos-animate" data-aos="flip-left" data-aos-delay="200">
+                        
+                        <h3 class="text-xl font-light mb-3 text-stone-200">Distribution Centres</h3>
+                        <p class="text-stone-400 text-sm">Strategic links to regional DCs ensuring just-in-time delivery and supply chain continuity.</p>
+                    </div>
+                    <div class="feature-card text-center aos-init aos-animate" data-aos="flip-left" data-aos-delay="300">
+                        
+                        <h3 class="text-xl font-light mb-3 text-stone-200">Mining Corridors</h3>
+                        <p class="text-stone-400 text-sm">Specialised heavy-haul routes serving Limpopo, North West, and Mpumalanga mining operations.</p>
+                    </div>
+                    <div class="feature-card text-center aos-init aos-animate" data-aos="flip-left" data-aos-delay="400">
+                        
+                        <h3 class="text-xl font-light mb-3 text-stone-200">Agricultural Zones</h3>
+                        <p class="text-stone-400 text-sm">Connecting farmers to markets across the Free State, Mpumalanga, and Limpopo.</p>
+                    </div>
+                </div>
+
+                
+            </div>
+        </section>
+
+        <section id="live-map" class="map-background-section">
+            <!-- Google Maps Container (background) -->
+            <div id="map"></div>
+            <!-- Dark overlay for readability -->
+            <div class="map-overlay"></div>
+            
+            <!-- Content on top of map -->
+            <div class="map-content">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-12" data-aos="fade-up">
+                        <span class="section-tag text-stone-300">LIVE ROUTE NETWORK</span>
+                        <h2 class="text-4xl md:text-5xl font-light mb-4 text-white">Interactive Coverage Map</h2>
+                        <p class="text-stone-300 max-w-2xl mx-auto text-lg">Explore our active routes and major hubs across South Africa in real-time.</p>
+                    </div>
+
+                    <!-- Map Legend - Only the 5 requested categories -->
+                    <div class="flex flex-wrap justify-center gap-4 mt-8" data-aos="fade-up" data-aos-delay="200">
+                        <div class="legend-item">
+                            <span class="legend-dot bg-green-500 animate-pulse"></span>
+                            <span>Headquarters (Midrand Glen)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot bg-blue-500"></span>
+                            <span>Major Hubs</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot bg-amber-500"></span>
+                            <span>Distribution Centres</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot bg-purple-500"></span>
+                            <span>Port Access (Durban)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot bg-stone-400"></span>
+                            <span>Active Routes</span>
+                        </div>
+                    </div>
+
+                    <!-- Optional call to action on map -->
+                    <div class="text-center mt-12">
+                        <p class="text-stone-300 text-sm tracking-wider">Pan and zoom to explore our coverage in detail</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- OUR CORE OPERATING REGIONS - Enhanced with icons and images -->
+        <section id="regions" class="bg-mid-gray py-20 md:py-28">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 aos-init aos-animate" data-aos="fade-up">
+                    <span class="section-tag">OUR CORE OPERATING REGIONS</span>
+                    <h2 class="text-3xl md:text-4xl font-light mb-4 text-stone-100">Serving South Africa's Economic Heartland</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Gauteng -->
+                    <div class="province-card aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                        <h3> Gauteng</h3>
+                        <p>South Africa's economic powerhouse. We operate consistent routes connecting Johannesburg, Pretoria, and surrounding industrial zones to national supply corridors. Our services support manufacturing, wholesale distribution, retail supply chains, and construction logistics.</p>
+                    </div>
+
+                    <!-- Mpumalanga -->
+                    <div class="province-card aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                        <h3> Mpumalanga</h3>
+                        <p>Headquartered in Midrand Glen, Gauteng, we maintain strong regional expertise across Mpumalanga's mining, agricultural, and industrial sectors. Our local knowledge allows us to optimise delivery schedules and route planning across the province.</p>
+                    </div>
+
+                    <!-- Limpopo -->
+                    <div class="province-card aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                        <h3>Limpopo</h3>
+                        <p>Serving mining operations, agricultural exporters, and regional distribution centres, our Limpopo routes are designed for long-distance efficiency and safe heavy-load handling.</p>
+                    </div>
+
+                    <!-- KwaZulu-Natal -->
+                    <div class="province-card aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
+                        <h3>KwaZulu-Natal (KZN)</h3>
+                        <p>With strategic access to Durban's port and coastal industrial zones, our KZN operations support import/export distribution, commercial freight, and cross-province cargo coordination.</p>
+                    </div>
+
+                    <!-- North West -->
+                    <div class="province-card aos-init aos-animate" data-aos="fade-up" data-aos-delay="500">
+                        <h3> North West</h3>
+                        <p>We provide transport solutions across mining and agricultural corridors, ensuring timely delivery between industrial production sites and central markets.</p>
+                    </div>
+
+                    <!-- Free State -->
+                    <div class="province-card aos-init aos-animate" data-aos="fade-up" data-aos-delay="600">
+                        <h3> Free State</h3>
+                        <p>Supporting central South Africa's farming and manufacturing sectors, our Free State routes strengthen inland supply chains and inter-provincial freight movement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROUTE PLANNING & OPERATIONAL CONTROL - With Stats -->
+        <section id="operations" class="bg-deep-black py-20 md:py-28">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right" class="aos-init aos-animate">
+                        <span class="section-tag">OPERATIONAL EXCELLENCE</span>
+                        <h2 class="text-3xl md:text-4xl font-light mb-6 leading-tight text-stone-100">Route Planning &amp; Operational Control</h2>
+                        <p class="text-stone-400 mb-8 text-lg">Every route is strategically planned to maximise performance across five key metrics:</p>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="stat-card">
+                                <div class="stat-number">99.7%</div>
+                                <div class="stat-label">Delivery Reliability</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">15%</div>
+                                <div class="stat-label">Fuel Efficiency</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">0</div>
+                                <div class="stat-label">Major Incidents</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">100%</div>
+                                <div class="stat-label">Compliance</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-aos="fade-left" data-aos-delay="200" class="aos-init aos-animate">
+                        <div class="zoom-container rounded-sm overflow-hidden">
+                            <img src="https://i.pinimg.com/736x/6d/ff/6e/6dff6ef14ad59d9b7ae5030b282dc6f1.jpg" alt="Route planning" class="zoom-image w-full h-auto object-cover" style="height: 500px; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CROSS-BORDER COORDINATION - With Visual Impact -->
+        <section id="cross-border" class="bg-light-gray py-20 md:py-28">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 md:order-1 aos-init aos-animate" data-aos="fade-right">
+                        <div class="zoom-container rounded-sm overflow-hidden">
+                            <img src="https://i.pinimg.com/1200x/95/49/72/954972bd6fcef4cdc865c31519e4e497.jpg" alt="Cross border transport" class="zoom-image w-full h-auto object-cover" style="height: 450px; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2 aos-init aos-animate" data-aos="fade-left" data-aos-delay="200">
+                        <span class="section-tag">BEYOND BORDERS</span>
+                        <h2 class="text-3xl md:text-4xl font-light mb-6 leading-tight text-stone-100">Cross-Border Coordination</h2>
+                        <p class="text-stone-400 mb-6 text-lg">For clients requiring extended regional logistics support, TC Van de Merwe Logistics offers cross-border coordination upon request.</p>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-deep-black p-4 border border-stone-700">
+                                
+                                <h4 class="font-light text-stone-200">SADC Region</h4>
+                                <p class="text-xs text-stone-500">Botswana, Mozambique, Zimbabwe</p>
+                            </div>
+                            <div class="bg-deep-black p-4 border border-stone-700">
+                                
+                                <h4 class="font-light text-stone-200">Full Compliance</h4>
+                                <p class="text-xs text-stone-500">Documentation &amp; customs prep</p>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-2 text-stone-400">
+                            <li class="flex items-start"><span class="text-stone-300 mr-3 text-lg">✓</span> Route feasibility planning</li>
+                            <li class="flex items-start"><span class="text-stone-300 mr-3 text-lg">✓</span> Regulatory documentation guidance</li>
+                            <li class="flex items-start"><span class="text-stone-300 mr-3 text-lg">✓</span> Load compliance preparation</li>
+                            <li class="flex items-start"><span class="text-stone-300 mr-3 text-lg">✓</span> Coordinated delivery scheduling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY OUR ROUTE NETWORK MATTERS - Dramatic Full-Width Image with Overlay Text -->
+        <section class="relative h-[80vh] min-h-[600px] overflow-hidden">
+            <img src="https://i.pinimg.com/736x/97/1b/98/971b98f7d15a5cb17d51eff05c861586.jpg" alt="Truck on highway at sunset" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50"></div>
+            
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center max-w-4xl px-6 aos-init" data-aos="zoom-in" data-aos-duration="1500">
+                    <span class="section-tag text-stone-300 text-lg mb-4">WHY OUR ROUTE NETWORK MATTERS</span>
+                    <h2 class="text-5xl md:text-7xl font-light mb-8 text-white">Predictability, Not Just Distance</h2>
+                    
+                    
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <div class="bg-black/40 backdrop-blur-sm px-8 py-4 border border-stone-500">
+                            <span class="text-3xl font-light text-white">98%</span>
+                            <p class="text-stone-300 text-sm">On-Time Delivery</p>
+                        </div>
+                        <div class="bg-black/40 backdrop-blur-sm px-8 py-4 border border-stone-500">
+                            <span class="text-3xl font-light text-white">6</span>
+                            <p class="text-stone-300 text-sm">Provinces Covered</p>
+                        </div>
+                        <div class="bg-black/40 backdrop-blur-sm px-8 py-4 border border-stone-500">
+                            <span class="text-3xl font-light text-white">24/7</span>
+                            <p class="text-stone-300 text-sm">Route Monitoring</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-white/80 text-lg mt-12 max-w-2xl mx-auto">When your business depends on movement, you need a route network built on discipline and operational foresight.</p>
+                </div>
+            </div>
+            
+            
+        </section>
+
+    </main>
+
+    <!-- FOOTER (consistent with main site) -->
+    <footer class="bg-deep-black border-t border-stone-800 py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 md:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-stone-400 font-light">
+                <div>
+                   <img src="images/logoipsum-248.svg" alt="TC Van de Merwe Logistics Logo" class="h-10 mb-4">
+                    <p class="leading-relaxed">Reliable freight solutions across South Africa. Established 2024.</p>
+                </div>
+                <div>
+                    <span class="text-stone-300 text-sm block mb-4">QUICK LINKS</span>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#services" class="hover:text-stone-100 transition">Services</a></li>
+                        <li><a href="index.html#fleet" class="hover:text-stone-100 transition">Fleet</a></li>
+                        <li><a href="index.html#coverage" class="hover:text-stone-100 transition">Coverage</a></li>
+                        <li><a href="index.html#careers" class="hover:text-stone-100 transition">Careers</a></li>
+                        <li><a href="index.html#contact" class="hover:text-stone-100 transition">Contact</a></li>
+                    </ul>
+                </div>
+             
+                <div>
+                    <span class="text-stone-300 text-sm block mb-4">OPERATING HOURS</span>
+                    <ul class="space-y-2">
+                        <li>Mon-Fri: 07:00 – 18:00</li>
+                        <li>Sat: 08:00 – 14:00</li>
+                        <li>Sun: Closed</li>
+                        <li>24/7 Dispatch Support</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-stone-800 mt-8 pt-8 text-xs text-stone-500 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+                <span>© 2025 TC Van de Merwe Logistics (Pty) Ltd. VAT Reg. All rights reserved.</span>
+                <span class="mt-2 md:mt-0">Designed with integrity · Member of SAPSDA</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+<!-- =========================================== Custom scripts =================================================== -->
+    <!-- Code injected by live-server -->
+     
+     <script src="javascript/Maps Initialization.js"></script>
+     <script src="javascript/main.js"></script>
+
+    <!-- ============================================================================================================== -->
+
+
+</body>
+</html>
