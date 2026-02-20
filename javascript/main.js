@@ -14,18 +14,38 @@ AOS.init({
 
 // Navbar scroll effect
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', function () {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-        navbar.classList.remove('bg-transparent', 'backdrop-blur-0');
-    } else {
-        navbar.classList.remove('scrolled');
-        navbar.classList.add('bg-transparent', 'backdrop-blur-0');
-    }
-});
+if (navbar) {
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+            navbar.classList.remove('bg-transparent', 'backdrop-blur-0');
+        } else {
+            navbar.classList.remove('scrolled');
+            navbar.classList.add('bg-transparent', 'backdrop-blur-0');
+        }
+    });
+}
 
-// Parallax — floating shapes + hero image + grid zoom bg
+// Mobile nav toggle + Parallax — floating shapes + hero image + grid zoom bg
 document.addEventListener('DOMContentLoaded', function () {
+    // Mobile nav
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    }
+
+    // Parallax
     const floatingShapes = [
         document.getElementById('floatingShape1'),
         document.getElementById('floatingShape2'),

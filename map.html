@@ -9,32 +9,62 @@
     <!-- Google Maps API -->
    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-  <link rel="stylesheet" href="styles/maps.css">
+   <link rel="stylesheet" href="styles/maps.css">
+
+</head>
+<body class="antialiased">
+
+   <!-- Floating shapes -->
+   <div class="floating-shape shape-1" id="floatingShape1" style="transform: translate(75.8px, 37.9px) scale(1.758);"></div>
+   <div class="floating-shape shape-2" id="floatingShape2" style="transform: translate(-113.7px, -75.8px) scale(2.137);"></div>
+   <div class="floating-shape shape-3" id="floatingShape3" style="transform: translate(-50%, -50%) scale(1.5685);"></div>
  
+   <!-- Navbar -->
+    <header id="navbar" class="fixed inset-x-0 top-0 z-50 navbar scrolled">
+       <div class="mx-auto max-w-7xl p-4">
+           <div class="flex h-16 items-center justify-between content-above">
+               <!-- Logo -->
+               <div class="flex items-center">
+                  <a href="index.html">
+                      <img src="images/logoipsum-248.svg" alt="TC Van de Merwe logo" class="h-10 w-auto">
+                  </a>
+               </div>
 
-    <!-- Floating shapes -->
-    <div class="floating-shape shape-1" id="floatingShape1" style="transform: translate(75.8px, 37.9px) scale(1.758);"></div>
-    <div class="floating-shape shape-2" id="floatingShape2" style="transform: translate(-113.7px, -75.8px) scale(2.137);"></div>
-    <div class="floating-shape shape-3" id="floatingShape3" style="transform: translate(-50%, -50%) scale(1.5685);"></div>
+               <!-- Desktop nav -->
+               <nav class="hidden md:flex items-center space-x-8 text-sm font-light text-white/90">
+                   <a href="#network" class="hover:text-white transition">Network</a>
+                   <a href="#live-map" class="hover:text-white transition">Live Map</a>
+                   <a href="#regions" class="hover:text-white transition">Regions</a>
+                   <a href="#operations" class="hover:text-white transition">Operations</a>
+                   <a href="#cross-border" class="hover:text-white transition">Cross-Border</a>
+                   <a href="index.html#contact" class="hover:text-white transition">Contact</a>
+               </nav>
 
-    <!-- Navbar -->
-     <header class="fixed top-0 p-4 left-0 w-full z-50 navbar scrolled" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 md:px-10 py-4 flex justify-between items-center content-above">
-            <div class="text-xl font-light tracking-tight text-white">
-               <a href="index.html">
-                   <img src="images/logoipsum-248.svg" alt="TC Van de Merwe logo" class="h-10 w-auto">
-               </a>
-            </div>
-            <nav class="space-x-8 text-sm font-light text-white/90 hidden md:block">
-                <a href="#network" class="hover:text-white transition">Network</a>
-                <a href="#live-map" class="hover:text-white transition">Live Map</a>
-                <a href="#regions" class="hover:text-white transition">Regions</a>
-                <a href="#operations" class="hover:text-white transition">Operations</a>
-                <a href="#cross-border" class="hover:text-white transition">Cross-Border</a>
-                <a href="index.html#contact" class="hover:text-white transition">Contact</a>
-            </nav>
-        </div>
-    </header>
+               <!-- Mobile menu button -->
+               <button
+                   id="mobileMenuButton"
+                   class="md:hidden items-center justify-center rounded-sm p-2 text-white focus:outline-none focus:ring-2 focus:ring-stone-400"
+                   aria-label="Toggle navigation"
+               >
+                   <span class="block w-6 h-0.5 bg-white mb-1.5"></span>
+                   <span class="block w-6 h-0.5 bg-white mb-1.5"></span>
+                   <span class="block w-6 h-0.5 bg-white"></span>
+               </button>
+           </div>
+       </div>
+
+       <!-- Mobile nav -->
+       <div id="mobileMenu" class="md:hidden border-t border-white/10 bg-deep-black hidden">
+           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-2 pb-4 space-y-2 text-sm font-light text-white">
+               <a href="#network" class="block py-1 hover:text-white transition">Network</a>
+               <a href="#live-map" class="block py-1 hover:text-white transition">Live Map</a>
+               <a href="#regions" class="block py-1 hover:text-white transition">Regions</a>
+               <a href="#operations" class="block py-1 hover:text-white transition">Operations</a>
+               <a href="#cross-border" class="block py-1 hover:text-white transition">Cross-Border</a>
+               <a href="index.html#contact" class="block py-1 hover:text-white transition">Contact</a>
+           </div>
+       </div>
+   </header>
 
     <main class="pt-24 content-above">
 

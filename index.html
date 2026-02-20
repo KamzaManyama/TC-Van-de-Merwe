@@ -22,7 +22,7 @@
     <meta property="og:title" content="TC Van de Merwe Logistics | Freight & Transport Solutions, Midrand Glen, Gauteng">
     <meta property="og:description" content="TC Van de Merwe Logistics offers reliable freight, bulk haulage, and logistics solutions across South Africa. Based in Midrand Glen, Gauteng. Contact us for a quote.">
     <meta property="og:image" content="https://i.pinimg.com/1200x/07/23/89/0723894b9cd303feeb26a15eed3d37f3.jpg">
-    <meta property="og:url" content="https://www.tcvdmlogistics.co.za">
+    <meta property="og:url" content="https://tc-van-de-merwe.onrender.com/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="TC Van de Merwe Logistics | Freight & Transport Solutions, Midrand Glen, Gauteng">
     <meta name="twitter:description" content="TC Van de Merwe Logistics offers reliable freight, bulk haulage, and logistics solutions across South Africa. Based in Midrand Glen, Gauteng. Contact us for a quote.">
@@ -39,20 +39,50 @@
     <div class="floating-shape shape-2" id="floatingShape2"></div>
     <div class="floating-shape shape-3" id="floatingShape3"></div>
 
-    <!-- Navbar -->
-    <header class="fixed top-0 p-4 left-0 w-full z-50 navbar bg-transparent backdrop-blur-0" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 md:px-10 py-4 flex justify-between items-center content-above">
-            <div class="text-xl font-light tracking-tight text-white">
-               <img src="images/logoipsum-248.svg" alt="TC Van de Merwe logo" class="h-10 w-auto">
+    <!-- Navbar (Tailwind-based, responsive) -->
+    <header id="navbar" class="fixed inset-x-0 top-0 z-50 navbar bg-transparent backdrop-blur-0">
+        <div class="mx-auto max-w-7xl p-4">
+            <div class="flex h-16 items-center justify-between content-above">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html">
+                        <img src="images/logoipsum-248.svg" alt="TC Van de Merwe logo" class="h-10 w-auto">
+                    </a>
+                </div>
+
+                <!-- Desktop nav -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-light text-white/90">
+                    <a href="#about" class="hover:text-white transition">About</a>
+                    <a href="#services" class="hover:text-white transition">Services</a>
+                    <a href="#fleet" class="hover:text-white transition">Fleet</a>
+                    <a href="#coverage" class="hover:text-white transition">Coverage</a>
+                    <a href="#careers" class="hover:text-white transition">Careers</a>
+                    <a href="#contact" class="hover:text-white transition">Contact</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <button
+                    id="mobileMenuButton"
+                    class="md:hidden  items-center justify-center rounded-sm p-2 text-white focus:outline-none focus:ring-2 focus:ring-stone-400"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="block w-6 h-0.5 bg-white mb-1.5"></span>
+                    <span class="block w-6 h-0.5 bg-white mb-1.5"></span>
+                    <span class="block w-6 h-0.5 bg-white"></span>
+                </button>
             </div>
-            <nav class="space-x-8 text-sm font-light text-white/90 hidden md:block">
-                <a href="#about" class="hover:text-white transition">About</a>
-                <a href="#services" class="hover:text-white transition">Services</a>
-                <a href="#fleet" class="hover:text-white transition">Fleet</a>
-                <a href="#coverage" class="hover:text-white transition">Coverage</a>
-                <a href="#careers" class="hover:text-white transition">Careers</a>
-                <a href="#contact" class="hover:text-white transition">Contact</a>
-            </nav>
+        </div>
+
+        <!-- Mobile nav -->
+        <div id="mobileMenu" class="md:hidden border-t border-white/10 bg-deep-black hidden">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-2 pb-4 space-y-2 text-sm font-light text-white">
+                <a href="#about" class="block py-1 hover:text-white transition">About</a>
+                <a href="#services" class="block py-1 hover:text-white transition">Services</a>
+                <a href="#fleet" class="block py-1 hover:text-white transition">Fleet</a>
+                <a href="#coverage" class="block py-1 hover:text-white transition">Coverage</a>
+                <a href="#careers" class="block py-1 hover:text-white transition">Careers</a>
+                <a href="#contact" class="block py-1 hover:text-white transition">Contact</a>
+            </div>
         </div>
     </header>
 
@@ -136,9 +166,9 @@
         </section>
 
         <!-- SERVICES SECTION (Specialised freight solutions) -->
-        <section id="services" class="bg-mid-gray py-20 md:py-28 relative">
+        <section id="services" class="bg-mid-gray py-20 md:py-28 relative overflow-hidden">
             <div class="absolute inset-0 overflow-hidden" id="parallaxBackground">
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0gNDAgMCBMIDAgMCAwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiM1NzUzNGUiIHN0cm9rZS13aWR0aD0iMC4yIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-10 zoom-out-element" id="zoomBg"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:w-[120%] h-full md:h-[120%] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0gNDAgMCBMIDAgMCAwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiM1NzUzNGUiIHN0cm9rZS13aWR0aD0iMC4yIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-10 zoom-out-element" id="zoomBg"></div>
             </div>
             
             <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
@@ -202,53 +232,39 @@
             </div>
         </section>
 
-        <!-- CAREERS SECTION (two-column with left bg image) -->
-        <section id="careers" class="relative bg-deep-black py-0 md:py-0 min-h-[75dvh] flex items-stretch">
-            <!-- Left column with background image -->
-            <div class="hidden md:block md:w-1/2 bg-cover bg-center" style="background-image: url('https://i.pinimg.com/1200x/e6/df/e5/e6dfe560f7d607407023d8942ea0e143.jpg'); background-size: cover; background-position: center;">
-                <!-- Overlay optional -->
-                <div class="w-full h-full bg-black/30"></div>
-            </div>
-            <!-- Right column with content -->
-            <div class="w-full md:w-1/2 bg-mid-gray py-16 px-8 md:px-12 flex items-center">
-                <div class="max-w-xl" data-aos="fade-left" data-aos-duration="1200">
-                    <span class="section-tag">CAREERS</span>
-                    <h2 class="text-4xl md:text-5xl font-light mb-4 text-stone-100">Join Our Team</h2>
-                    <p class="text-stone-400 font-light leading-relaxed mb-8">
-                        At TC Van de Merwe Logistics, we value skilled, dedicated individuals who are ready to move forward with us. We offer competitive opportunities, a safe environment, and real career growth.
-                    </p>
-
-                    <!-- Positions list (short) -->
-                    <div class="mb-8">
-                        <h3 class="text-xl font-light mb-3 text-stone-200">Open positions:</h3>
-                        <ul class="space-y-2 text-stone-400">
-                            <li><span class="text-stone-300">Drivers</span> (Code 10/14, PDP required)</li>
-                            <li><span class="text-stone-300">Fleet Mechanics</span> (Diesel experience)</li>
-                            <li><span class="text-stone-300">Logistics Coordinators</span> (Route planning)</li>
-                            <li><span class="text-stone-300">Machine Operators</span> (Excavator/TLB)</li>
-                        </ul>
-                    </div>
-
-                    <!-- Apply button and email -->
-                    <a href="mailto:careers@tcvdmlogistics.co.za" class="inline-block px-8 py-3 border border-stone-600 text-stone-200 hover:bg-stone-800 hover:border-stone-500 transition-all duration-300 text-sm tracking-wider">APPLY NOW</a>
-                    
+        <!-- CAREERS SECTION (responsive two-column layout) -->
+        <section id="careers" class="relative bg-deep-black overflow-hidden">
+            <div class="flex flex-col md:flex-row min-h-[75dvh]">
+                <!-- Left column with background image (desktop) / Top image (mobile) -->
+                <div class="w-full md:w-1/2 h-64 md:h-auto bg-cover bg-center relative" style="background-image: url('https://i.pinimg.com/1200x/e6/df/e5/e6dfe560f7d607407023d8942ea0e143.jpg'); background-size: cover; background-position: center;">
+                    <div class="w-full h-full bg-black/30"></div>
                 </div>
-            </div>
-            <!-- For mobile, show a simplified version: image above content -->
-            <div class="block md:hidden w-full">
-                <div class="h-64 bg-cover bg-center" style="background-image: url('https://i.pinimg.com/1200x/e6/df/e5/e6dfe560f7d607407023d8942ea0e143.jpg');"></div>
-                <div class="bg-mid-gray py-12 px-6">
-                    <span class="section-tag">CAREERS</span>
-                    <h2 class="text-4xl font-light mb-4 text-stone-100">Join Our Team</h2>
-                    <p class="text-stone-400 font-light leading-relaxed mb-8">At TC Van de Merwe Logistics, we value skilled, dedicated individuals...</p>
-                   
-                    <ul class="space-y-2 text-stone-400 mb-8">
-                        <li><span class="text-stone-300">Drivers</span> (Code 10/14, PDP)</li>
-                        <li><span class="text-stone-300">Fleet Mechanics</span> (Diesel)</li>
-                        <li><span class="text-stone-300">Logistics Coordinators</span></li>
-                        <li><span class="text-stone-300">Machine Operators</span></li>
-                    </ul>
-                    <a href="mailto:careers@tcvdmlogistics.co.za" class="inline-block px-8 py-3 border border-stone-600 text-stone-200 hover:bg-stone-800 transition">APPLY NOW</a>
+                
+                <!-- Right column with content -->
+                <div class="w-full md:w-1/2 bg-mid-gray py-12 md:py-16 px-6 md:px-12 flex items-center">
+                    <div class="w-full max-w-xl mx-auto" data-aos="fade-left" data-aos-duration="1200">
+                        <span class="section-tag">CAREERS</span>
+                        <h2 class="text-4xl md:text-5xl font-light mb-4 text-stone-100">Join Our Team</h2>
+                        <p class="text-stone-400 font-light leading-relaxed mb-8">
+                            At TC Van de Merwe Logistics, we value skilled, dedicated individuals who are ready to move forward with us. We offer competitive opportunities, a safe environment, and real career growth.
+                        </p>
+
+                        <!-- Positions list -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-light mb-3 text-stone-200">Open positions:</h3>
+                            <ul class="space-y-2 text-stone-400">
+                                <li><span class="text-stone-300">Drivers</span> (Code 10/14, PDP required)</li>
+                                <li><span class="text-stone-300">Fleet Mechanics</span> (Diesel experience)</li>
+                                <li><span class="text-stone-300">Logistics Coordinators</span> (Route planning)</li>
+                                <li><span class="text-stone-300">Machine Operators</span> (Excavator/TLB)</li>
+                            </ul>
+                        </div>
+
+                        <!-- Apply button -->
+                        <a href="mailto:careers@tcvdmlogistics.co.za" class="inline-block px-8 py-3 border border-stone-600 text-stone-200 hover:bg-stone-800 hover:border-stone-500 transition-all duration-300 text-sm tracking-wider">
+                            APPLY NOW
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -438,7 +454,6 @@
 
     <!-- AOS Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <script src="javascript/main.js"></script>
     <script src="javascript/contactForm.js"></script>
 
