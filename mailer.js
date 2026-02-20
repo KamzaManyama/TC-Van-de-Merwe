@@ -8,6 +8,7 @@ require('dotenv').config();
 const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
+app.use(express.static(__dirname));
 
 const app = express();
 app.use(express.json());
