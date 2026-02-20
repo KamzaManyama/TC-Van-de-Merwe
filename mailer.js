@@ -1,20 +1,14 @@
 require('dotenv').config();
 const express  = require('express');
 const nodemailer = require('nodemailer');
-<<<<<<< HEAD
 const cors     = require('cors');
 
 const app = express();
 app.use(express.json());
 app.use(cors({ origin: 'https://tc-van-de-merwe.onrender.com', methods: ['GET', 'POST'] }));
 
-=======
-const cors = require('cors');
-const app = express();
-app.use(express.json());
-app.use(cors({ origin: '*'}));
-app.use(express.static(__dirname));
->>>>>>> 32b385a0ca537e806c3ebfb3107b0d5a5b926165
+
+
 
 app.use(express.static(__dirname));
 
@@ -42,148 +36,6 @@ function getSATimestamp() {
         minute:  '2-digit',
         hour12:  false
     }) + ' (SAST)';
-}
-
-
-function buildInternalEmail(name, email, phone, message) {
-    const timestamp = getSATimestamp();
-    return `
-<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#f4f4f4;font-family:Arial,Helvetica,sans-serif;">
-
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4;padding:30px 0;">
-    <tr><td align="center">
-
-      <!-- Card -->
-      <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-
-        <!-- Header bar -->
-        <tr>
-          <td style="background:#111111;padding:24px 32px;">
-            <table width="100%" cellpadding="0" cellspacing="0">
-              <tr>
-                <td>
-                  <!-- Brand logo -->
-                  <span style="display:inline-block;vertical-align:middle;">
-                    <img src="cid:company-logo" alt="TC Van de Merwe Logistics" style="height:32px;width:auto;display:inline-block;vertical-align:middle;border:0;outline:none;text-decoration:none;">
-                  </span>
-                  &nbsp;&nbsp;
-                  <span style="color:#ffffff;font-size:16px;font-weight:300;letter-spacing:1px;vertical-align:middle;">TC VAN DE MERWE <span style="color:#FF9736;">LOGISTICS</span></span>
-                </td>
-                <td align="right">
-                  <span style="color:#888888;font-size:11px;letter-spacing:1px;text-transform:uppercase;">New Enquiry</span>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-        <!-- Orange accent stripe -->
-        <tr><td style="height:4px;background:linear-gradient(to right,#FF7A00,#FFBC7D);"></td></tr>
-
-        <!-- Body -->
-        <tr>
-          <td style="padding:32px;">
-
-            <!-- Alert badge -->
-            <table cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
-              <tr>
-                <td style="background:#FFF3E0;border-left:4px solid #FF7A00;padding:10px 16px;border-radius:0 4px 4px 0;">
-                  <span style="color:#E65100;font-size:13px;font-weight:bold;letter-spacing:0.5px;">&#9993;&nbsp; NEW CONTACT FORM SUBMISSION</span>
-                </td>
-              </tr>
-            </table>
-
-            <!-- Timestamp -->
-            <p style="margin:0 0 24px 0;color:#999999;font-size:12px;letter-spacing:0.5px;">
-              &#128344;&nbsp; Received: <strong style="color:#666666;">${timestamp}</strong>
-            </p>
-
-            <!-- Details table -->
-            <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin-bottom:28px;">
-
-              <tr>
-                <td style="padding:12px 16px;background:#f8f8f8;border-top:1px solid #eeeeee;width:28%;vertical-align:top;">
-                  <span style="font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.8px;font-weight:bold;">Full Name</span>
-                </td>
-                <td style="padding:12px 16px;border-top:1px solid #eeeeee;vertical-align:top;">
-                  <span style="font-size:15px;color:#111111;font-weight:600;">${name}</span>
-                </td>
-              </tr>
-
-              <tr>
-                <td style="padding:12px 16px;background:#f8f8f8;border-top:1px solid #eeeeee;vertical-align:top;">
-                  <span style="font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.8px;font-weight:bold;">Email</span>
-                </td>
-                <td style="padding:12px 16px;border-top:1px solid #eeeeee;vertical-align:top;">
-                  <a href="mailto:${email}" style="color:#FF7A00;text-decoration:none;font-size:14px;">${email}</a>
-                </td>
-              </tr>
-
-              <tr>
-                <td style="padding:12px 16px;background:#f8f8f8;border-top:1px solid #eeeeee;vertical-align:top;">
-                  <span style="font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.8px;font-weight:bold;">Phone</span>
-                </td>
-                <td style="padding:12px 16px;border-top:1px solid #eeeeee;vertical-align:top;">
-                  <a href="tel:${phone}" style="color:#333333;text-decoration:none;font-size:14px;">${phone}</a>
-                </td>
-              </tr>
-
-              <tr>
-                <td style="padding:12px 16px;background:#f8f8f8;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;vertical-align:top;">
-                  <span style="font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.8px;font-weight:bold;">Message</span>
-                </td>
-                <td style="padding:12px 16px;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;vertical-align:top;">
-                  <p style="margin:0;font-size:14px;color:#333333;line-height:1.7;white-space:pre-line;">${message}</p>
-                </td>
-              </tr>
-
-            </table>
-
-            <!-- Reply CTA -->
-            <table cellpadding="0" cellspacing="0">
-              <tr>
-                <td style="background:#FF7A00;border-radius:3px;">
-                  <a href="mailto:${email}?subject=Re: Your enquiry to TC Van de Merwe Logistics" 
-                     style="display:inline-block;padding:12px 28px;color:#ffffff;font-size:13px;font-weight:bold;text-decoration:none;letter-spacing:0.8px;">
-                    REPLY TO ${name.toUpperCase()}
-                  </a>
-                </td>
-              </tr>
-            </table>
-
-          </td>
-        </tr>
-
-        <!-- Footer -->
-        <tr>
-          <td style="background:#f8f8f8;border-top:1px solid #eeeeee;padding:20px 32px;">
-            <table width="100%" cellpadding="0" cellspacing="0">
-              <tr>
-                <td>
-                  <p style="margin:0;font-size:11px;color:#aaaaaa;line-height:1.6;">
-                    TC Van de Merwe Logistics (Pty) Ltd &nbsp;&middot;&nbsp; Midrand Glen, Gauteng &nbsp;&middot;&nbsp; South Africa<br>
-                    This notification was generated automatically via the website contact form.
-                  </p>
-                </td>
-                <td align="right" style="vertical-align:middle;">
-                  <span style="font-size:18px;color:#FF7A00;font-weight:bold;letter-spacing:-1px;">&#9650;&#9650;&#9650;</span>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-      </table>
-      <!-- /Card -->
-
-    </td></tr>
-  </table>
-
-</body>
-</html>`;
 }
 
 
