@@ -8,14 +8,10 @@ require('dotenv').config();
 const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
-app.use(express.static(__dirname));
-
 const app = express();
 app.use(express.json());
-
-app.use(cors({
-    origin: 'http://127.0.0.1:5502'
-}));
+app.use(cors({ origin: '*'}));
+app.use(express.static(__dirname));
 
 if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD || !process.env.RECIPIENT_EMAIL) {
     console.error('Missing environment variables. Check your .env file.');
