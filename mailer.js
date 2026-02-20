@@ -1,12 +1,20 @@
 require('dotenv').config();
 const express  = require('express');
 const nodemailer = require('nodemailer');
+<<<<<<< HEAD
 const cors     = require('cors');
 
 const app = express();
 app.use(express.json());
 app.use(cors({ origin: 'https://tc-van-de-merwe.onrender.com', methods: ['GET', 'POST'] }));
 
+=======
+const cors = require('cors');
+const app = express();
+app.use(express.json());
+app.use(cors({ origin: '*'}));
+app.use(express.static(__dirname));
+>>>>>>> 32b385a0ca537e806c3ebfb3107b0d5a5b926165
 
 app.use(express.static(__dirname));
 
