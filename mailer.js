@@ -2,18 +2,29 @@ require('dotenv').config();
 const express  = require('express');
 const nodemailer = require('nodemailer');
 const cors     = require('cors');
+const multer = require('multer');
+const path = require('path');
 
 const app = express();
 app.use(express.json());
 app.use(cors({ origin: 'https://tc-van-de-merwe.onrender.com', methods: ['GET', 'POST'] }));
-
-
-
-
 app.use(express.static(__dirname));
 
-
-const path = require('path');
+// Configure multer for file uploads (memory storage)
+const upload = multer({
+    storage: multer.memoryStorage(),
+    limits: {
+        fileSize: 5 * 1024 * 1024 // 5MB limit
+    },
+    fileFilter: (req, file, cb) => {
+        const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+        if (allowedTypes.includes(file.mimetype)) {
+            cb(null, true);
+        } else {
+            cb(new Error('Invalid file type. Only PDF, DOC, and DOCX files are allowed.'));
+        }
+    }
+});
 
 // Gmail transporter
 const transporter = nodemailer.createTransport({
@@ -350,6 +361,202 @@ app.post('/send-email', async (req, res) => {
     } catch (err) {
         console.error('Mailer error:', err);
         res.status(500).json({ error: 'Failed to send email. Please try again later.' });
+    }
+});
+
+// ── POST /submit-career-application ────────────────────────────────────────
+app.post('/submit-career-application', upload.single('resume'), async (req, res) => {
+    try {
+        const { name, email, phone, position, message } = req.body;
+        const resumeFile = req.file;
+
+        // Validation
+        if (!name || !email || !phone || !position || !message) {
+            return res.status(400).json({ error: 'All fields are required.' });
+        }
+
+        if (!resumeFile) {
+            return res.status(400).json({ error: 'Resume file is required.' });
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            return res.status(400).json({ error: 'Invalid email address.' });
+        }
+
+        const timestamp = getSATimestamp();
+
+        // Build career application email HTML
+        const careerEmailHTML = `
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f4f4f4;font-family:Arial,Helvetica,sans-serif;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4;padding:30px 0;">
+    <tr><td align="center">
+
+      <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+
+        <!-- Header -->
+        <tr>
+          <td style="background:#111111;padding:24px 32px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td>
+                  <span style="display:inline-block;vertical-align:middle;margin-right:10px;">
+                    <img src="cid:company-logo" alt="TC Van de Merwe Logistics" style="height:32px;width:auto;display:inline-block;vertical-align:middle;border:0;outline:none;text-decoration:none;">
+                  </span>
+                  <span style="color:#ffffff;font-size:16px;font-weight:300;letter-spacing:1px;vertical-align:middle;">
+                    TC VAN DE MERWE <span style="color:#FF9736;">LOGISTICS</span>
+                  </span>
+                </td>
+                <td align="right">
+                  <span style="color:#888888;font-size:11px;letter-spacing:1px;text-transform:uppercase;">New Application</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Accent stripe -->
+        <tr><td style="height:4px;background:linear-gradient(to right,#FF7A00,#FFBC7D);"></td></tr>
+
+        <!-- Body -->
+        <tr>
+          <td style="padding:32px;">
+
+            <p style="margin:0 0 24px 0;color:#999999;font-size:12px;letter-spacing:0.5px;">
+              &#128344;&nbsp; Received: <strong style="color:#666666;">${timestamp}</strong>
+            </p>
+
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin-bottom:28px;">
+              <tr>
+                <td style="padding:12px 16px;background:#f8f8f8;border-top:1px solid #eeeeee;width:28%;vertical-align:top;">
+                  <span style="font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.8px;font-weight:bold;">Position</span>
+                </td>
+                <td style="padding:12px 16px;border-top:1px solid #eeeeee;vertical-align:top;">
+                  <span style="font-size:15px;color:#111111;font-weight:600;">${position}</span>
+                </td>
+              </tr>
+
+              <tr>
+                <td style="padding:12px 16px;background:#f8f8f8;border-top:1px solid #eeeeee;vertical-align:top;">
+                  <span style="font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.8px;font-weight:bold;">Full Name</span>
+                </td>
+                <td style="padding:12px 16px;border-top:1px solid #eeeeee;vertical-align:top;">
+                  <span style="font-size:15px;color:#111111;font-weight:600;">${name}</span>
+                </td>
+              </tr>
+
+              <tr>
+                <td style="padding:12px 16px;background:#f8f8f8;border-top:1px solid #eeeeee;vertical-align:top;">
+                  <span style="font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.8px;font-weight:bold;">Email</span>
+                </td>
+                <td style="padding:12px 16px;border-top:1px solid #eeeeee;vertical-align:top;">
+                  <a href="mailto:${email}" style="color:#FF7A00;text-decoration:none;font-size:14px;">${email}</a>
+                </td>
+              </tr>
+
+              <tr>
+                <td style="padding:12px 16px;background:#f8f8f8;border-top:1px solid #eeeeee;vertical-align:top;">
+                  <span style="font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.8px;font-weight:bold;">Phone</span>
+                </td>
+                <td style="padding:12px 16px;border-top:1px solid #eeeeee;vertical-align:top;">
+                  <a href="tel:${phone}" style="color:#333333;text-decoration:none;font-size:14px;">${phone}</a>
+                </td>
+              </tr>
+
+              <tr>
+                <td style="padding:12px 16px;background:#f8f8f8;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;vertical-align:top;">
+                  <span style="font-size:11px;color:#888888;text-transform:uppercase;letter-spacing:0.8px;font-weight:bold;">Cover Letter</span>
+                </td>
+                <td style="padding:12px 16px;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;vertical-align:top;">
+                  <p style="margin:0;font-size:14px;color:#333333;line-height:1.7;white-space:pre-line;">${message}</p>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:0 0 16px 0;font-size:13px;color:#666666;">
+              <strong>Resume attached:</strong> ${resumeFile.originalname} (${(resumeFile.size / 1024).toFixed(2)} KB)
+            </p>
+
+            <table cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="background:#FF7A00;border-radius:3px;">
+                  <a href="mailto:${email}?subject=Re: Your Application for ${position}"
+                     style="display:inline-block;padding:12px 28px;color:#ffffff;font-size:13px;font-weight:bold;text-decoration:none;letter-spacing:0.8px;">
+                    REPLY TO ${name.toUpperCase()}
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="background:#f8f8f8;border-top:1px solid #eeeeee;padding:20px 32px;">
+            <p style="margin:0;font-size:11px;color:#aaaaaa;line-height:1.6;">
+              TC Van de Merwe Logistics (Pty) Ltd &nbsp;&middot;&nbsp; Midrand Glen, Gauteng &nbsp;&middot;&nbsp; South Africa<br>
+              This application was submitted via the careers page.
+            </p>
+          </td>
+        </tr>
+
+      </table>
+
+    </td></tr>
+  </table>
+
+</body>
+</html>`;
+
+        const logoAttachment = {
+            filename: 'logoipsum-248.svg',
+            path: path.join(__dirname, 'images', 'logoipsum-248.svg'),
+            cid: 'company-logo'
+        };
+
+        // Resume attachment
+        const resumeAttachment = {
+            filename: resumeFile.originalname,
+            content: resumeFile.buffer,
+            contentType: resumeFile.mimetype
+        };
+
+        const careerMail = {
+            from: `"TC Van de Merwe Careers" <${process.env.GMAIL_USER}>`,
+            to: process.env.RECIPIENT_EMAIL || 'careers@tcvdmlogistics.co.za',
+            replyTo: email,
+            subject: `Career Application: ${position} — ${name}`,
+            html: careerEmailHTML,
+            attachments: [logoAttachment, resumeAttachment]
+        };
+
+        // Auto-reply to applicant
+        const applicantAutoReply = {
+            from: `"TC Van de Merwe Logistics" <${process.env.GMAIL_USER}>`,
+            to: email,
+            subject: `Application Received — TC Van de Merwe Logistics`,
+            html: buildAutoReply(name),
+            attachments: [logoAttachment]
+        };
+
+        await transporter.sendMail(careerMail);
+        await transporter.sendMail(applicantAutoReply);
+
+        res.status(200).json({ 
+            success: true, 
+            message: 'Application submitted successfully.' 
+        });
+
+    } catch (err) {
+        console.error('Career application error:', err);
+        res.status(500).json({ 
+            error: err.message || 'Failed to submit application. Please try again later.' 
+        });
     }
 });
 

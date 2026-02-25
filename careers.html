@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | TC Van de Merwe Logistics — Join Our Team</title>
+
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="styles/homeStyles.css">
+    <!-- Favicon -->
+    <link rel="icon" href="images/logoipsum-248.svg" type="image/png">
+
+    <meta name="description" content="Join TC Van de Merwe Logistics. View open positions for drivers, mechanics, coordinators and operators. Based in Midrand Glen, Gauteng.">
+</head>
+<body class="antialiased">
+
+<style>
+  #site-nav { position:fixed;top:0;left:0;right:0;z-index:9999;transition:background-color .3s,border-color .3s;border-bottom:1px solid transparent; }
+  #site-nav.nav-scrolled { background-color:#0c0a09;border-bottom-color:#292524; }
+  #nav-desktop { display:none; }
+  #nav-mobile-menu { display:none; }
+  @media(min-width:768px){
+    #nav-desktop   { display:flex; }
+    #nav-hamburger { display:none!important; }
+  }
+  #nav-mobile-menu.nav-open { display:block; }
+
+  /* Filter buttons */
+  .filter-btn { transition: all 0.2s ease; }
+  .filter-btn.active { background-color: #d97706; color: #fff; border-color: #d97706; }
+
+  /* Job card */
+  .job-card { transition: border-color 0.2s ease, transform 0.2s ease; }
+  .job-card:hover { border-color: rgba(168,162,158,0.5); transform: translateY(-2px); }
+  .job-card.hidden-card { display: none; }
+
+  /* Tag pill */
+  .tag { display:inline-block;font-size:0.7rem;letter-spacing:0.12em;font-weight:400;padding:3px 10px;border-radius:2px;text-transform:uppercase; }
+</style>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<nav id="site-nav">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="index.html" class="flex items-center flex-shrink-0">
+      <img src="images/logoipsum-248.svg" alt="TC Van de Merwe Logistics" class="h-10 w-auto">
+    </a>
+    <div id="nav-desktop" class="items-center gap-10">
+      <a href="index.html#about"    class="text-white/80 hover:text-white text-sm font-light tracking-wide transition-colors duration-200">About</a>
+      <a href="index.html#services" class="text-white/80 hover:text-white text-sm font-light tracking-wide transition-colors duration-200">Services</a>
+      <a href="index.html#fleet"    class="text-white/80 hover:text-white text-sm font-light tracking-wide transition-colors duration-200">Fleet</a>
+      <a href="index.html#coverage" class="text-white/80 hover:text-white text-sm font-light tracking-wide transition-colors duration-200">Coverage</a>
+      <a href="careers.html"        class="text-amber-500 text-sm font-light tracking-wide">Careers</a>
+      <a href="index.html#contact"  class="text-white/80 hover:text-white text-sm font-light tracking-wide transition-colors duration-200">Contact</a>
+    </div>
+    <button id="nav-hamburger" class="flex flex-col justify-center items-center gap-[5px] w-10 h-10 bg-transparent border-0 cursor-pointer p-1" aria-label="Open menu">
+      <span class="nav-bar block w-[22px] h-[1.5px] bg-white rounded-sm transition-all duration-300 origin-center"></span>
+      <span class="nav-bar block w-[22px] h-[1.5px] bg-white rounded-sm transition-all duration-300 origin-center"></span>
+      <span class="nav-bar block w-[22px] h-[1.5px] bg-white rounded-sm transition-all duration-300 origin-center"></span>
+    </button>
+  </div>
+  <div id="nav-mobile-menu" class="bg-stone-950 border-t border-white/10">
+    <div class="px-6 pb-6 pt-2 flex flex-col">
+      <a href="index.html#about"    class="nav-mobile-link block text-white/80 hover:text-white text-base font-light py-3 border-b border-white/10 transition-colors duration-200">About</a>
+      <a href="index.html#services" class="nav-mobile-link block text-white/80 hover:text-white text-base font-light py-3 border-b border-white/10 transition-colors duration-200">Services</a>
+      <a href="index.html#fleet"    class="nav-mobile-link block text-white/80 hover:text-white text-base font-light py-3 border-b border-white/10 transition-colors duration-200">Fleet</a>
+      <a href="index.html#coverage" class="nav-mobile-link block text-white/80 hover:text-white text-base font-light py-3 border-b border-white/10 transition-colors duration-200">Coverage</a>
+      <a href="careers.html"        class="nav-mobile-link block text-amber-500 text-base font-light py-3 border-b border-white/10">Careers</a>
+      <a href="index.html#contact"  class="nav-mobile-link block text-white/80 hover:text-white text-base font-light py-3 transition-colors duration-200">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+(function(){
+  var nav    = document.getElementById('site-nav');
+  var burger = document.getElementById('nav-hamburger');
+  var drawer = document.getElementById('nav-mobile-menu');
+  var bars   = document.querySelectorAll('.nav-bar');
+  var isOpen = false;
+  window.addEventListener('scroll', function(){ nav.classList.toggle('nav-scrolled', window.scrollY > 40); });
+  burger.addEventListener('click', function(){
+    isOpen = !isOpen;
+    if(isOpen){ drawer.classList.add('nav-open'); bars[0].style.transform='translateY(6.5px) rotate(45deg)'; bars[1].style.opacity='0'; bars[2].style.transform='translateY(-6.5px) rotate(-45deg)'; }
+    else { drawer.classList.remove('nav-open'); bars[0].style.transform=''; bars[1].style.opacity='1'; bars[2].style.transform=''; }
+  });
+  document.querySelectorAll('.nav-mobile-link').forEach(function(l){ l.addEventListener('click', function(){ isOpen=false; drawer.classList.remove('nav-open'); bars[0].style.transform=''; bars[1].style.opacity='1'; bars[2].style.transform=''; }); });
+})();
+</script>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="relative h-[60vh] min-h-[420px] flex items-center justify-center overflow-hidden bg-deep-black">
+    <div class="absolute inset-0 overflow-hidden">
+        <img src="https://i.pinimg.com/1200x/e6/df/e5/e6dfe560f7d607407023d8942ea0e143.jpg"
+             alt="Logistics workers" class="absolute inset-0 w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70"></div>
+    </div>
+    <div class="relative z-10 text-center px-6 max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
+        <span class="section-tag">JOIN OUR TEAM</span>
+        <h1 class="text-5xl md:text-6xl font-light text-white mb-5 leading-tight">Drive Your Career<br>Forward.</h1>
+        <p class="text-stone-300 font-light text-lg max-w-xl mx-auto leading-relaxed">
+            We are always looking for skilled, disciplined people who want to be part of something that moves South Africa forward.
+        </p>
+    </div>
+</section>
+
+<!-- ═══════════════════ WHY WORK WITH US ═══════════════════ -->
+<section class="bg-mid-gray py-20">
+    <div class="max-w-7xl mx-auto px-6 md:px-10">
+        <div class="text-center mb-14" data-aos="fade-up">
+            <span class="section-tag">WHY TC VAN DE MERWE</span>
+            <h2 class="text-4xl font-light text-stone-100">A Company That Moves With You</h2>
+        </div>
+        <div class="grid md:grid-cols-4 gap-6">
+            <div class="card-hover p-6 rounded-sm" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-amber-500 text-3xl mb-4">⚙</div>
+                <h3 class="text-stone-100 font-light text-lg mb-2">Modern Fleet</h3>
+                <p class="text-stone-400 font-light text-sm leading-relaxed">Work with well-maintained, modern vehicles and equipment across our full fleet.</p>
+            </div>
+            <div class="card-hover p-6 rounded-sm" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-amber-500 text-3xl mb-4">▲</div>
+                <h3 class="text-stone-100 font-light text-lg mb-2">Career Growth</h3>
+                <p class="text-stone-400 font-light text-sm leading-relaxed">We promote from within and invest in training so you grow with the business.</p>
+            </div>
+            <div class="card-hover p-6 rounded-sm" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-amber-500 text-3xl mb-4">✓</div>
+                <h3 class="text-stone-100 font-light text-lg mb-2">Safe Environment</h3>
+                <p class="text-stone-400 font-light text-sm leading-relaxed">Safety is non-negotiable. Every team member is protected, trained and respected.</p>
+            </div>
+            <div class="card-hover p-6 rounded-sm" data-aos="fade-up" data-aos-delay="400">
+                <div class="text-amber-500 text-3xl mb-4">◎</div>
+                <h3 class="text-stone-100 font-light text-lg mb-2">Competitive Pay</h3>
+                <p class="text-stone-400 font-light text-sm leading-relaxed">Market-related salaries, performance bonuses, and reliable pay every month.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ JOB LISTINGS ═══════════════════ -->
+<section class="bg-deep-black py-20" id="positions">
+    <div class="max-w-7xl mx-auto px-6 md:px-10">
+
+        <div class="text-center mb-12" data-aos="fade-up">
+            <span class="section-tag">OPEN POSITIONS</span>
+            <h2 class="text-4xl font-light text-stone-100 mb-3">Current Vacancies</h2>
+            <p class="text-stone-400 font-light max-w-xl mx-auto">Filter by department to find the role that fits you.</p>
+        </div>
+
+        <!-- Filter buttons -->
+        <div class="flex flex-wrap gap-3 justify-center mb-12" id="filterBtns">
+            <button class="filter-btn active tag border border-stone-600 text-stone-300 px-5 py-2 cursor-pointer" data-filter="all">All Positions</button>
+            <button class="filter-btn tag border border-stone-600 text-stone-300 px-5 py-2 cursor-pointer" data-filter="driving">Driving</button>
+            <button class="filter-btn tag border border-stone-600 text-stone-300 px-5 py-2 cursor-pointer" data-filter="mechanical">Mechanical</button>
+            <button class="filter-btn tag border border-stone-600 text-stone-300 px-5 py-2 cursor-pointer" data-filter="operations">Operations</button>
+            <button class="filter-btn tag border border-stone-600 text-stone-300 px-5 py-2 cursor-pointer" data-filter="admin">Admin</button>
+        </div>
+
+        <!-- Job cards grid -->
+        <div class="grid md:grid-cols-2 gap-6" id="jobsGrid">
+
+            <!-- ── DRIVING ───────────────────────────────────── -->
+            <div class="job-card card-hover rounded-sm p-7 border border-stone-700/50" data-category="driving" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="tag bg-amber-600/20 text-amber-400 mb-3">Driving</span>
+                        <h3 class="text-xl font-light text-stone-100">Long-Haul Truck Driver</h3>
+                        <p class="text-stone-500 text-sm font-light mt-1">Midrand Glen, Gauteng · Full Time</p>
+                    </div>
+                    <span class="tag bg-green-900/30 text-green-400 border border-green-800/40">Open</span>
+                </div>
+                <p class="text-stone-400 font-light text-sm leading-relaxed mb-5">
+                    Transport freight across South Africa on scheduled long-haul routes. You will be responsible for safe, on-time delivery while maintaining vehicle condition and logbooks.
+                </p>
+                <div class="mb-5">
+                    <p class="text-stone-500 text-xs uppercase tracking-widest mb-2">Requirements</p>
+                    <ul class="space-y-1 text-stone-400 text-sm font-light">
+                        <li>· Code 14 driver's licence with valid PDP</li>
+                        <li>· Minimum 3 years long-haul experience</li>
+                        <li>· Clean criminal & driving record</li>
+                        <li>· Ability to work weekends and overnight routes</li>
+                    </ul>
+                </div>
+                <a href="mailto:careers@tcvdmlogistics.co.za?subject=Application: Long-Haul Truck Driver"
+                   class="inline-block px-6 py-2.5 border border-amber-600/60 text-amber-400 text-xs tracking-widest hover:bg-amber-600/10 transition-all duration-200">
+                    APPLY NOW
+                </a>
+            </div>
+
+            <div class="job-card card-hover rounded-sm p-7 border border-stone-700/50" data-category="driving" data-aos="fade-up" data-aos-delay="150">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="tag bg-amber-600/20 text-amber-400 mb-3">Driving</span>
+                        <h3 class="text-xl font-light text-stone-100">Code 10 Rigid Truck Driver</h3>
+                        <p class="text-stone-500 text-sm font-light mt-1">Midrand Glen, Gauteng · Full Time</p>
+                    </div>
+                    <span class="tag bg-green-900/30 text-green-400 border border-green-800/40">Open</span>
+                </div>
+                <p class="text-stone-400 font-light text-sm leading-relaxed mb-5">
+                    Local and regional deliveries using rigid trucks. Support distribution operations across Gauteng and surrounding areas with punctuality and professionalism.
+                </p>
+                <div class="mb-5">
+                    <p class="text-stone-500 text-xs uppercase tracking-widest mb-2">Requirements</p>
+                    <ul class="space-y-1 text-stone-400 text-sm font-light">
+                        <li>· Code 10 driver's licence with valid PDP</li>
+                        <li>· Minimum 2 years rigid truck experience</li>
+                        <li>· Knowledge of Gauteng road network</li>
+                        <li>· Good communication skills</li>
+                    </ul>
+                </div>
+                <a href="mailto:careers@tcvdmlogistics.co.za?subject=Application: Code 10 Rigid Truck Driver"
+                   class="inline-block px-6 py-2.5 border border-amber-600/60 text-amber-400 text-xs tracking-widest hover:bg-amber-600/10 transition-all duration-200">
+                    APPLY NOW
+                </a>
+            </div>
+
+            <!-- ── MECHANICAL ─────────────────────────────────── -->
+            <div class="job-card card-hover rounded-sm p-7 border border-stone-700/50" data-category="mechanical" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="tag bg-blue-600/20 text-blue-400 mb-3">Mechanical</span>
+                        <h3 class="text-xl font-light text-stone-100">Diesel Mechanic</h3>
+                        <p class="text-stone-500 text-sm font-light mt-1">Midrand Glen, Gauteng · Full Time</p>
+                    </div>
+                    <span class="tag bg-green-900/30 text-green-400 border border-green-800/40">Open</span>
+                </div>
+                <p class="text-stone-400 font-light text-sm leading-relaxed mb-5">
+                    Maintain, diagnose, and repair our heavy vehicle fleet. Keep trucks and equipment in peak operational condition to support uninterrupted logistics operations.
+                </p>
+                <div class="mb-5">
+                    <p class="text-stone-500 text-xs uppercase tracking-widest mb-2">Requirements</p>
+                    <ul class="space-y-1 text-stone-400 text-sm font-light">
+                        <li>· Trade-tested Diesel Mechanic (N3 or equivalent)</li>
+                        <li>· Minimum 3 years heavy vehicle experience</li>
+                        <li>· Experience with Volvo, Mercedes or MAN trucks preferred</li>
+                        <li>· Ability to work under pressure and meet deadlines</li>
+                    </ul>
+                </div>
+                <a href="mailto:careers@tcvdmlogistics.co.za?subject=Application: Diesel Mechanic"
+                   class="inline-block px-6 py-2.5 border border-blue-600/60 text-blue-400 text-xs tracking-widest hover:bg-blue-600/10 transition-all duration-200">
+                    APPLY NOW
+                </a>
+            </div>
+
+            <div class="job-card card-hover rounded-sm p-7 border border-stone-700/50" data-category="mechanical" data-aos="fade-up" data-aos-delay="150">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="tag bg-blue-600/20 text-blue-400 mb-3">Mechanical</span>
+                        <h3 class="text-xl font-light text-stone-100">Fleet Maintenance Technician</h3>
+                        <p class="text-stone-500 text-sm font-light mt-1">Midrand Glen, Gauteng · Full Time</p>
+                    </div>
+                    <span class="tag bg-green-900/30 text-green-400 border border-green-800/40">Open</span>
+                </div>
+                <p class="text-stone-400 font-light text-sm leading-relaxed mb-5">
+                    Conduct scheduled preventative maintenance, safety checks and roadworthy inspections across our fleet. Keep maintenance records up to date and flag issues early.
+                </p>
+                <div class="mb-5">
+                    <p class="text-stone-500 text-xs uppercase tracking-widest mb-2">Requirements</p>
+                    <ul class="space-y-1 text-stone-400 text-sm font-light">
+                        <li>· Relevant technical qualification (N2 minimum)</li>
+                        <li>· 2+ years fleet maintenance experience</li>
+                        <li>· Knowledge of roadworthiness requirements</li>
+                        <li>· Meticulous record-keeping ability</li>
+                    </ul>
+                </div>
+                <a href="mailto:careers@tcvdmlogistics.co.za?subject=Application: Fleet Maintenance Technician"
+                   class="inline-block px-6 py-2.5 border border-blue-600/60 text-blue-400 text-xs tracking-widest hover:bg-blue-600/10 transition-all duration-200">
+                    APPLY NOW
+                </a>
+            </div>
+
+            <!-- ── OPERATIONS ─────────────────────────────────── -->
+            <div class="job-card card-hover rounded-sm p-7 border border-stone-700/50" data-category="operations" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="tag bg-purple-600/20 text-purple-400 mb-3">Operations</span>
+                        <h3 class="text-xl font-light text-stone-100">Logistics Coordinator</h3>
+                        <p class="text-stone-500 text-sm font-light mt-1">Midrand Glen, Gauteng · Full Time</p>
+                    </div>
+                    <span class="tag bg-green-900/30 text-green-400 border border-green-800/40">Open</span>
+                </div>
+                <p class="text-stone-400 font-light text-sm leading-relaxed mb-5">
+                    Plan and coordinate daily routes, driver schedules, and load allocations. Liaise with clients on delivery timelines and resolve operational issues in real time.
+                </p>
+                <div class="mb-5">
+                    <p class="text-stone-500 text-xs uppercase tracking-widest mb-2">Requirements</p>
+                    <ul class="space-y-1 text-stone-400 text-sm font-light">
+                        <li>· Diploma or degree in Logistics / Supply Chain (advantageous)</li>
+                        <li>· 2+ years in a transport or logistics coordination role</li>
+                        <li>· Strong problem-solving under time pressure</li>
+                        <li>· Proficiency in MS Office and route planning tools</li>
+                    </ul>
+                </div>
+                <a href="mailto:careers@tcvdmlogistics.co.za?subject=Application: Logistics Coordinator"
+                   class="inline-block px-6 py-2.5 border border-purple-600/60 text-purple-400 text-xs tracking-widest hover:bg-purple-600/10 transition-all duration-200">
+                    APPLY NOW
+                </a>
+            </div>
+
+            <div class="job-card card-hover rounded-sm p-7 border border-stone-700/50" data-category="operations" data-aos="fade-up" data-aos-delay="150">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="tag bg-purple-600/20 text-purple-400 mb-3">Operations</span>
+                        <h3 class="text-xl font-light text-stone-100">Machine Operator — Excavator / TLB</h3>
+                        <p class="text-stone-500 text-sm font-light mt-1">Various Sites, Gauteng · Full Time</p>
+                    </div>
+                    <span class="tag bg-green-900/30 text-green-400 border border-green-800/40">Open</span>
+                </div>
+                <p class="text-stone-400 font-light text-sm leading-relaxed mb-5">
+                    Operate excavators and TLB machinery on construction and earthmoving projects. Maintain equipment condition, comply with site safety protocols and complete daily reporting.
+                </p>
+                <div class="mb-5">
+                    <p class="text-stone-500 text-xs uppercase tracking-widest mb-2">Requirements</p>
+                    <ul class="space-y-1 text-stone-400 text-sm font-light">
+                        <li>· Valid operator's certificate (Excavator / TLB)</li>
+                        <li>· Minimum 3 years proven operating experience</li>
+                        <li>· Strong safety awareness and site compliance</li>
+                        <li>· Own reliable transport to site (advantageous)</li>
+                    </ul>
+                </div>
+                <a href="mailto:careers@tcvdmlogistics.co.za?subject=Application: Machine Operator"
+                   class="inline-block px-6 py-2.5 border border-purple-600/60 text-purple-400 text-xs tracking-widest hover:bg-purple-600/10 transition-all duration-200">
+                    APPLY NOW
+                </a>
+            </div>
+
+            <!-- ── ADMIN ──────────────────────────────────────── -->
+            <div class="job-card card-hover rounded-sm p-7 border border-stone-700/50" data-category="admin" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="tag bg-stone-600/30 text-stone-300 mb-3">Admin</span>
+                        <h3 class="text-xl font-light text-stone-100">Transport Administrator</h3>
+                        <p class="text-stone-500 text-sm font-light mt-1">Midrand Glen, Gauteng · Full Time</p>
+                    </div>
+                    <span class="tag bg-green-900/30 text-green-400 border border-green-800/40">Open</span>
+                </div>
+                <p class="text-stone-400 font-light text-sm leading-relaxed mb-5">
+                    Handle all administrative functions of the transport office — trip sheets, PODs, driver compliance documents, invoicing support and client communication.
+                </p>
+                <div class="mb-5">
+                    <p class="text-stone-500 text-xs uppercase tracking-widest mb-2">Requirements</p>
+                    <ul class="space-y-1 text-stone-400 text-sm font-light">
+                        <li>· Matric minimum; transport admin experience preferred</li>
+                        <li>· Proficiency in MS Excel and Word</li>
+                        <li>· Strong attention to detail and organisation</li>
+                        <li>· Ability to handle high volumes in a fast-paced environment</li>
+                    </ul>
+                </div>
+                <a href="mailto:careers@tcvdmlogistics.co.za?subject=Application: Transport Administrator"
+                   class="inline-block px-6 py-2.5 border border-stone-500/60 text-stone-300 text-xs tracking-widest hover:bg-stone-700/30 transition-all duration-200">
+                    APPLY NOW
+                </a>
+            </div>
+
+            <div class="job-card card-hover rounded-sm p-7 border border-stone-700/50" data-category="admin" data-aos="fade-up" data-aos-delay="150">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="tag bg-stone-600/30 text-stone-300 mb-3">Admin</span>
+                        <h3 class="text-xl font-light text-stone-100">Compliance & Safety Officer</h3>
+                        <p class="text-stone-500 text-sm font-light mt-1">Midrand Glen, Gauteng · Full Time</p>
+                    </div>
+                    <span class="tag bg-green-900/30 text-green-400 border border-green-800/40">Open</span>
+                </div>
+                <p class="text-stone-400 font-light text-sm leading-relaxed mb-5">
+                    Oversee all health, safety, and compliance obligations across fleet and operations. Conduct toolbox talks, incident investigations, and ensure COID and road transport regulation compliance.
+                </p>
+                <div class="mb-5">
+                    <p class="text-stone-500 text-xs uppercase tracking-widest mb-2">Requirements</p>
+                    <ul class="space-y-1 text-stone-400 text-sm font-light">
+                        <li>· SAMTRAC or equivalent SHEQ qualification</li>
+                        <li>· Knowledge of COID Act, OHS Act and C-BRTA regulations</li>
+                        <li>· 2+ years safety officer experience (transport preferred)</li>
+                        <li>· Strong written reporting and audit skills</li>
+                    </ul>
+                </div>
+                <a href="mailto:careers@tcvdmlogistics.co.za?subject=Application: Compliance & Safety Officer"
+                   class="inline-block px-6 py-2.5 border border-stone-500/60 text-stone-300 text-xs tracking-widest hover:bg-stone-700/30 transition-all duration-200">
+                    APPLY NOW
+                </a>
+            </div>
+
+        </div>
+
+        <!-- No results message -->
+        <div id="noResults" class="hidden text-center py-16">
+            <p class="text-stone-500 font-light text-lg">No positions in this category at the moment.</p>
+            <p class="text-stone-600 text-sm mt-2">Send a speculative application to <a href="mailto:careers@tcvdmlogistics.co.za" class="text-amber-500 hover:underline">careers@tcvdmlogistics.co.za</a></p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══════════════════ APPLICATION FORM ═══════════════════ -->
+<section class="bg-mid-gray py-20" id="apply">
+    <div class="max-w-4xl mx-auto px-6 md:px-10">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <span class="section-tag">APPLY NOW</span>
+            <h2 class="text-4xl font-light text-stone-100 mb-4">Submit Your Application</h2>
+            <p class="text-stone-400 font-light max-w-xl mx-auto">Fill out the form below to apply for a position. All fields are required.</p>
+        </div>
+
+        <!-- Application Form -->
+        <div class="card-hover rounded-sm p-8 md:p-10 border border-stone-700/50" data-aos="fade-up" data-aos-delay="100">
+            <form id="careerApplicationForm" enctype="multipart/form-data" novalidate>
+                <div class="space-y-6">
+                    <!-- Full Name -->
+                    <div>
+                        <label for="applicantName" class="block text-sm font-light text-stone-300 mb-2">Full Name *</label>
+                        <input type="text" id="applicantName" name="name" required
+                               class="form-input w-full"
+                               placeholder="John Doe">
+                        <span class="error-message text-red-400 text-xs mt-1 hidden"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="applicantEmail" class="block text-sm font-light text-stone-300 mb-2">Email Address *</label>
+                        <input type="email" id="applicantEmail" name="email" required
+                               class="form-input w-full"
+                               placeholder="john.doe@example.com">
+                        <span class="error-message text-red-400 text-xs mt-1 hidden"></span>
+                    </div>
+
+                    <!-- Phone -->
+                    <div>
+                        <label for="applicantPhone" class="block text-sm font-light text-stone-300 mb-2">Phone Number *</label>
+                        <input type="tel" id="applicantPhone" name="phone" required
+                               class="form-input w-full"
+                               placeholder="+27 11 000 0000">
+                        <span class="error-message text-red-400 text-xs mt-1 hidden"></span>
+                    </div>
+
+                    <!-- Position Dropdown -->
+                    <div>
+                        <label for="position" class="block text-sm font-light text-stone-300 mb-2">Position Applying For *</label>
+                        <select id="position" name="position" required class="form-input w-full">
+                            <option value="">Select a position...</option>
+                            <option value="Long-Haul Truck Driver">Long-Haul Truck Driver</option>
+                            <option value="Code 10 Rigid Truck Driver">Code 10 Rigid Truck Driver</option>
+                            <option value="Diesel Mechanic">Diesel Mechanic</option>
+                            <option value="Fleet Maintenance Technician">Fleet Maintenance Technician</option>
+                            <option value="Logistics Coordinator">Logistics Coordinator</option>
+                            <option value="Machine Operator — Excavator / TLB">Machine Operator — Excavator / TLB</option>
+                            <option value="Transport Administrator">Transport Administrator</option>
+                            <option value="Compliance & Safety Officer">Compliance & Safety Officer</option>
+                            <option value="Speculative Application">Speculative Application (No specific position)</option>
+                        </select>
+                        <span class="error-message text-red-400 text-xs mt-1 hidden"></span>
+                    </div>
+
+                    <!-- Cover Letter / Message -->
+                    <div>
+                        <label for="coverLetter" class="block text-sm font-light text-stone-300 mb-2">Cover Letter / Message *</label>
+                        <textarea id="coverLetter" name="message" rows="6" required
+                                  class="form-input w-full resize-none"
+                                  placeholder="Tell us why you're interested in this position and what you bring to TC Van de Merwe Logistics..."></textarea>
+                        <span class="error-message text-red-400 text-xs mt-1 hidden"></span>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div>
+                        <label for="resumeFile" class="block text-sm font-light text-stone-300 mb-2">Upload CV/Resume *</label>
+                        <input type="file" id="resumeFile" name="resume" accept=".pdf,.doc,.docx" required
+                               class="form-input w-full file:mr-4 file:py-2 file:px-4 file:rounded-sm file:border-0 file:text-sm file:font-light file:bg-stone-700 file:text-stone-300 hover:file:bg-stone-600 cursor-pointer">
+                        <p class="text-stone-500 text-xs mt-2">Accepted formats: PDF, DOC, DOCX (Max 5MB)</p>
+                        <span class="error-message text-red-400 text-xs mt-1 hidden"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="pt-4">
+                        <button type="submit" id="submitBtn"
+                                class="w-full md:w-auto px-10 py-3 bg-amber-600/80 hover:bg-amber-600 text-white font-light text-sm tracking-widest transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                            SUBMIT APPLICATION
+                        </button>
+                    </div>
+
+                    <!-- Status Message -->
+                    <div id="formStatus" class="text-sm text-center mt-4 hidden"></div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Info Box -->
+        <div class="mt-8 card-hover rounded-sm p-6 border border-stone-700/30" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="text-stone-200 font-light text-lg mb-3">What Happens Next?</h3>
+            <ul class="space-y-2 text-stone-400 text-sm font-light">
+                <li>· Our team reviews every application within 5 business days</li>
+                <li>· If your profile matches, we'll contact you to schedule an interview</li>
+                <li>· Successful candidates go through a brief assessment and reference check</li>
+                <li>· We'll notify you of the outcome via email</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="bg-deep-black border-t border-stone-800 py-12 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 md:px-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-stone-400 font-light">
+            <div>
+                <img src="images/logoipsum-248.svg" alt="TC Van de Merwe Logistics Logo" class="h-10 mb-4">
+                <p class="leading-relaxed">Reliable freight solutions across South Africa. Established 2024.</p>
+            </div>
+            <div>
+                <span class="text-stone-300 text-sm block mb-4">QUICK LINKS</span>
+                <ul class="space-y-2">
+                    <li><a href="index.html#about"    class="hover:text-stone-100 transition">About</a></li>
+                    <li><a href="index.html#services" class="hover:text-stone-100 transition">Services</a></li>
+                    <li><a href="index.html#fleet"    class="hover:text-stone-100 transition">Fleet</a></li>
+                    <li><a href="index.html#coverage" class="hover:text-stone-100 transition">Coverage</a></li>
+                    <li><a href="careers.html"        class="text-amber-500 hover:text-amber-400 transition">Careers</a></li>
+                    <li><a href="index.html#contact"  class="hover:text-stone-100 transition">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="text-stone-300 text-sm block mb-4">OPERATING HOURS</span>
+                <ul class="space-y-2">
+                    <li>Mon–Fri: 07:00 – 18:00</li>
+                    <li>Sat: 08:00 – 14:00</li>
+                    <li>Sun: Closed</li>
+                    <li class="text-amber-500/80">24/7 Dispatch Support</li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-stone-800 mt-8 pt-8 text-xs text-stone-500 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+            <span>© 2025 TC Van de Merwe Logistics (Pty) Ltd. All rights reserved.</span>
+            <span class="mt-2 md:mt-0">Designed with integrity · Member of SAPSDA</span>
+        </div>
+    </div>
+</footer>
+
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="javascript/careerApplication.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true, offset: 80 });
+
+    // ── Job filter ────────────────────────────────────────────────────────
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var jobCards   = document.querySelectorAll('.job-card');
+    var noResults  = document.getElementById('noResults');
+
+    filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var filter = this.dataset.filter;
+
+            // Update active button
+            filterBtns.forEach(function(b){ b.classList.remove('active'); });
+            this.classList.add('active');
+
+            // Show / hide cards
+            var visible = 0;
+            jobCards.forEach(function(card) {
+                if (filter === 'all' || card.dataset.category === filter) {
+                    card.style.display = 'block';
+                    visible++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResults.classList.toggle('hidden', visible > 0);
+        });
+    });
+</script>
+
+</body>
+</html>

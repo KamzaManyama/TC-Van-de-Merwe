@@ -4,7 +4,7 @@
 // ================================================
 
 // Update MAILER_URL to your deployed backend endpoint
-const MAILER_URL = '/send-email'; 
+const MAILER_URL = '3000/send-email'; 
 
 const form = document.getElementById('contactForm');
 const statusText = document.getElementById('formStatus');
